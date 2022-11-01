@@ -8,4 +8,4 @@ docker run -it --rm --name webconnechecker --network host --env HTTP_PROXY="http
 
 Reference:
 
-[Build a Site Connectivity Checker in Python](https://realpython.com/site-connectivity-checker-python/)
+[HEAD requests with aiohttp is dog slow](https://stackoverflow.com/questions/55250990/head-requests-with-aiohttp-is-dog-slow)
