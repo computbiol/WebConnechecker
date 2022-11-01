@@ -26,7 +26,7 @@ async def check_url(url: str):
         proxy = None
     results = {}
     for i in urls:
-        result = await get_status_code(session=http_client.session, url=i, proxy=proxy)
+        result = await get_status_code(session=http_client.session, url=i, timeout=10, proxy=proxy)
         results[i] = result
     print(results)
     # set http_scheme url as default derived_url

@@ -60,17 +60,17 @@ def add_scheme(url: str):
     return urls
 
 
-async def get_status_code(session: aiohttp.ClientSession, url: str, proxy: str) -> Tuple[int, str]:
+async def get_status_code(session: aiohttp.ClientSession, url: str, timeout: int, proxy: str) -> Tuple[int, str]:
     try:
         # A HEAD request is quicker than a GET request
-        resp = await session.head(url, allow_redirects=True, proxy=proxy, ssl=False, headers=HEADERS)
+        resp = await session.head(url, allow_redirects=True, timeout=timeout, proxy=proxy, ssl=False, headers=HEADERS)
         async with resp:
             status = resp.status
             reason = resp.reason
             real_url = resp.real_url
         if status == 405:
             # HEAD request not allowed, fall back on GET
-            resp = await session.get(url=url, allow_redirects=True, proxy=proxy, ssl=False, headers=HEADERS)
+            resp = await session.get(url=url, allow_redirects=True, timeout=timeout, proxy=proxy, ssl=False, headers=HEADERS)
             async with resp:
                 status = resp.status
                 reason = resp.reason
